@@ -49,4 +49,20 @@ export class TodolistService {
         })
     }
 
+    // delete todo
+
+    deleteTodo(request, response) {
+        request.addListener("data", (data) => {
+            const body = JSON.parse(data.toString());
+
+            // jika ada data
+            if (this.todolist[body.id]) {
+                this.todolist.splice(body.id, 1);
+            }
+
+            response.write(this.getJsonTodolist());
+            response.end();
+        })
+    }
+
 }
