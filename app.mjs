@@ -10,6 +10,8 @@ const server = http.createServer((request, response) => {
     // jika request adalah get
     if (request.method === 'GET') {
         service.getTodolist(request, response);
+    } else if (request.method === "POST") {
+        service.createTodo(request, response);
     }
 
     // response.write('TODOLIST API');
