@@ -33,4 +33,20 @@ export class TodolistService {
             response.end();
         })
     }
+
+    // disini update todo
+    updateTodo(request, response) {
+        request.addListener("data", (data) => {
+            const body = JSON.parse(data.toString());
+
+            // jika ada data
+            if (this.todolist[body.id]) {
+                this.todolist[body.id] = body.todo;
+            }
+
+            response.write(this.getJsonTodolist());
+            response.end();
+        })
+    }
+
 }
